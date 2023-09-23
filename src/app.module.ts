@@ -9,6 +9,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UsersModule } from './users/users.module';
 import { join } from 'path';
 import { AppResolver } from './app.resolver';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { AppResolver } from './app.resolver';
       autoSchemaFile: join(process.cwd(), 'src/schema.gpl'),
       sortSchema: true,
     }),
+    AuthModule,
   ],
   // controllers: [AppController],
   providers: [AppService, AppResolver],

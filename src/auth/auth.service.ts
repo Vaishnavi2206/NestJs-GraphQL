@@ -3,7 +3,6 @@ import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/modules/users/users.service';
 import * as bcrypt from 'bcrypt';
 import { User } from 'src/modules/users/entities/user.entity';
-import { LoginUserInput } from './dto/login-user.input';
 import { CreateUserInput } from 'src/modules/users/dto/create-user.input';
 
 @Injectable()
@@ -36,9 +35,8 @@ export class AuthService {
   }
 
   private async comparePassword(enteredPassword, dbPassword) {
-    // const match = await bcrypt.compare(enteredPassword, dbPassword);
-    // return match;
-    return enteredPassword == dbPassword;
+    const match = await bcrypt.compare(enteredPassword, dbPassword);
+    return match;
   }
 
   async login(user: User) {

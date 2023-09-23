@@ -10,18 +10,11 @@ export class UsersService {
 
   async create(userInput: CreateUserInput): Promise<User> {
     const user = new User();
-    let dataSaved: any;
     user.name = userInput.name;
     user.email = userInput.email;
     user.password = userInput.password;
 
-    return user
-      .save()
-      .then((data) => {
-        dataSaved = data;
-        return dataSaved.dataValues;
-      })
-      .catch((error) => {});
+    return user.save();
   }
 
   async findAll() {
@@ -29,7 +22,7 @@ export class UsersService {
     return users;
   }
 
-  findOneById(id: number) {
+  findOneById(id: any) {
     return this.userRepository.findOne({ where: { id: id } });
   }
 

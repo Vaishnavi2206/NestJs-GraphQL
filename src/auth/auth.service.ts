@@ -1,22 +1,23 @@
 import { Injectable } from '@nestjs/common';
-// import { JwtService } from '@nestjs/jwt';
+import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/modules/users/users.service';
 import * as bcrypt from 'bcrypt';
-import { LoginUserInput } from './dto/login-user.input';
 import { User } from 'src/modules/users/entities/user.entity';
+import { LoginUserInput } from './dto/login-user.input';
+import { CreateUserInput } from 'src/modules/users/dto/create-user.input';
 
 @Injectable()
 export class AuthService {
 
   constructor(
     private readonly userService: UsersService,
-    // private readonly jwtService: JwtService,
-  ) {}
+    private readonly jwtService: JwtService,
+  ) { }
 
   async validateUser(username: string, pass: string) {
     // find if user exist with this email
-    console.log("email",username);
-    
+    console.log('email', username);
+
     const user = await this.userService.findOneByEmail(username);
 
     if (!user) {
@@ -35,16 +36,22 @@ export class AuthService {
   }
 
   private async comparePassword(enteredPassword, dbPassword) {
-    const match = await bcrypt.compare(enteredPassword, dbPassword);
-    return match;
-    // return enteredPassword==dbPassword;
+    // const match = await bcrypt.compare(enteredPassword, dbPassword);
+    // return match;
+    return enteredPassword == dbPassword;
   }
 
   async login(user: User) {
-    const { password, ...result } = user["dataValues"];
     return {
-      access_token:"jwt",
-      user: result
+      access_token: this.jwtService.sign({
+        username: user['dataValues'].email,
+        id: user['dataValues'].id,
+      }),
+      user: user['dataValues'],
     };
-}
+  }
+
+   signup(userInput: CreateUserInput) {
+    return this.userService.create(userInput);
+  }
 }

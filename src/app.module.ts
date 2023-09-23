@@ -1,19 +1,29 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
+// import { AppController } from './app.resolver';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './core/database/database.module';
-import { UsersModule } from './modules/users/users..module';
 import { AuthModule } from './modules/auth/auth.module';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { UsersModule } from './users/users.module';
+import { join } from 'path';
+import { AppResolver } from './app.resolver';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule,
     UsersModule,
-    AuthModule,
+    // AuthModule,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      // include: [UsersModule],
+      driver: ApolloDriver,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gpl'),
+      sortSchema: true,
+    }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  // controllers: [AppController],
+  providers: [AppService, AppResolver],
 })
-export class AppModule {}
+export class AppModule { }

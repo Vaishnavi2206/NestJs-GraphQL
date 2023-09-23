@@ -4,7 +4,7 @@ import { databaseConfig } from './db.config';
 // import { User } from 'src/modules/users/user.entity';
 import { Client } from 'pg';
 import * as pg from 'pg';
-import { User } from 'src/users/entities/user.entity';
+import { User } from 'src/modules/users/entities/user.entity';
 
 export const databaseProviders = [
   {

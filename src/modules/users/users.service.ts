@@ -1,17 +1,10 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { CreateUserInput } from './dto/create-user.input';
-// import { User } from 'src/modules/users/user.entity';
 import { User } from './entities/user.entity';
-import { Model } from 'sequelize';
-import { InjectModel } from '@nestjs/sequelize';
 
 @Injectable()
 export class UsersService {
   constructor(
-    // @Inject(User.name)
-    // private userRepository: Model<User>
-    // @InjectModel(User)
-    // private readonly userRepository: Model<User>
     @Inject('UsersRepository') private readonly userRepository: typeof User,
   ) {}
 

@@ -15,7 +15,6 @@ import { JwtStrategy } from './jwt.strategy';
       signOptions: { expiresIn: '6000s' },
       secret: process.env.JWTKEY || "test-key",
     }),
-    // JwtModule,
   ], //todo:key
   providers: [AuthResolver, AuthService, LocalStrategy, JwtStrategy],
 })

@@ -34,8 +34,6 @@ export const databaseProviders = [
         let res =  await client.query(`SELECT 1 from pg_database WHERE datname = '${database}'`);
         if (
          res.rowCount == 1
-          // `$( psql -XtAc "SELECT 1 FROM pg_database WHERE datname='${database}'" )" = '1`
-          // `psql ${database} -c '\q' 2>&1`
         ) {
 
           console.log('Database already exists!');

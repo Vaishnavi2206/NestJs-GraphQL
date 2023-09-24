@@ -8,6 +8,8 @@ import { join } from 'path';
 import { AppResolver } from './app.resolver';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
+import { ChatGateway } from './chat/chat.gateway';
+import { MessagesModule } from './messages/messages.module';
 
 @Module({
   imports: [
@@ -23,9 +25,10 @@ import { UsersModule } from './modules/users/users.module';
         'subscriptions-transport-ws':{
           path:'/graphql'
         }
-      }
+      },
     }),
     AuthModule,
+    MessagesModule,
   ],
   providers: [AppService, AppResolver],
 })

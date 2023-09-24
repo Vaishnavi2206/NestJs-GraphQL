@@ -1,6 +1,10 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { CreateUserInput } from './dto/create-user.input';
 import { User } from './entities/user.entity';
+import { PubSub } from 'graphql-subscriptions';
+import { Subscription } from '@nestjs/graphql';
+
+const pubSub = new PubSub();
 
 @Injectable()
 export class UsersService {
@@ -13,9 +17,10 @@ export class UsersService {
     user.name = userInput.name;
     user.email = userInput.email;
     user.password = userInput.password;
-
     return user.save();
   }
+
+
 
   async findAll() {
     const users = await this.userRepository.findAll<User>();

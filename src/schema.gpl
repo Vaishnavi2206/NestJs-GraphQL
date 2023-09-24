@@ -29,6 +29,10 @@ type Query {
   users: [User!]!
 }
 
+type Subscription {
+  newUser: User!
+}
+
 type User {
   email: String
   id: Int

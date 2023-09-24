@@ -18,6 +18,12 @@ import { UsersModule } from './modules/users/users.module';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gpl'),
       sortSchema: true,
+      installSubscriptionHandlers: true,
+      subscriptions:{
+        'subscriptions-transport-ws':{
+          path:'/graphql'
+        }
+      }
     }),
     AuthModule,
   ],

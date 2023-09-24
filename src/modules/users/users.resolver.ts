@@ -4,6 +4,7 @@ import { User } from './entities/user.entity';
 import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
 import { UseGuards } from '@nestjs/common';
 
+
 @Resolver(() => User)
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}

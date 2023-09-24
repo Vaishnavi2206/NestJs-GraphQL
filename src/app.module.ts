@@ -8,9 +8,9 @@ import { join } from 'path';
 import { AppResolver } from './app.resolver';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
-import { ChatGateway } from './chat/chat.gateway';
 import { MessagesModule } from './messages/messages.module';
-
+import { CacheModule } from '@nestjs/cache-manager';
+import * as redisStore from 'cache-manager-redis-store';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -29,6 +29,13 @@ import { MessagesModule } from './messages/messages.module';
     }),
     AuthModule,
     MessagesModule,
+    CacheModule.register({
+      isGlobal: true,
+      store: redisStore,
+      url: "redis://localhost:6379",
+      host: process.env.REDIS_HOST || 'localhost',
+      port: process.env.REDIS_PORT || 6379
+    }),
   ],
   providers: [AppService, AppResolver],
 })

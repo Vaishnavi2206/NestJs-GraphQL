@@ -9,8 +9,7 @@ import { MessagesService } from './messages.service';
 import { CreateMessageDto } from './dto/create-message.dto';
 import { Server } from 'socket.io';
 import { Socket } from 'socket.io';
-import { UseGuards } from '@nestjs/common';
-import { WsGuard } from './messages.guard';
+
 @WebSocketGateway({
   cors: {
     origin: '*',

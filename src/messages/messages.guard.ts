@@ -1,8 +1,4 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { WsException } from '@nestjs/websockets';
-import { Socket } from 'socket.io';
-import { AuthService } from 'src/auth/auth.service';
-import { User } from 'src/modules/users/entities/user.entity';
+import { CanActivate, Injectable } from '@nestjs/common';
 import { UsersService } from 'src/modules/users/users.service';
 import { Observable } from 'rxjs';
 

@@ -5,12 +5,12 @@ dotenv.config();
 
 export const databaseConfig: IDatabaseConfig = {
   development: {
-    username: 'postgres',
-    password: '',
-    database: 'nestgraphql',
-    host: 'localhost',
-    port: 5432,
-    dialect: 'postgres',
+    username: process.env.DB_USER || 'postgres',
+    password: process.env.DB_PAS || '',
+    database: process.env.DB_NAME_DEVELOPMENT || 'nestgraphql',
+    host: process.env.DB_HOST || 'localhost',
+    port: process.env.DB_PORT || 5432,
+    dialect: process.env.DB_DIALECT || 'postgres'
   },
   test: {
     username: process.env.DB_USER,

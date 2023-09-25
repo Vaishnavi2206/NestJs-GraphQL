@@ -4,16 +4,19 @@ import { Socket } from 'socket.io';
 import { AuthService } from 'src/auth/auth.service';
 import { User } from 'src/modules/users/entities/user.entity';
 import { UsersService } from 'src/modules/users/users.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class WsGuard implements CanActivate {
-  constructor(private userService: UsersService,private authService:AuthService) {}
+  constructor(private userService: UsersService) {}
 
-  async canActivate(context: ExecutionContext): Promise<boolean> {
+  canActivate(
+    context: any,
+  ): boolean | any | Promise<boolean | any> | Observable<boolean | any> {
     try {
-    //  get authToken and verify user
+      //  get authToken and verify user
     } catch (err) {
-    //   throw error
+      //   throw error
     }
   }
 }

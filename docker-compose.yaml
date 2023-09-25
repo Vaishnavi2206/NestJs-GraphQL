@@ -1,9 +1,13 @@
 version: "3.9"
 services:
   redis:
-    image: redis:6.0
+    container_name: cache
+    image: redis
     ports:
       - 6379:6379
+    volumes:
+      - redis:/data
+
   redis-commander:
     container_name: redis-commander
     hostname: redis-commander
@@ -18,4 +22,6 @@ services:
       restart: always
       environment:
         POSTGRES_PASSWORD: postgres
-      
+volumes:
+  redis:
+    driver: local

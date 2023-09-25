@@ -33,8 +33,8 @@ import * as redisStore from 'cache-manager-redis-store';
       isGlobal: true,
       store: redisStore,
       url: "redis://localhost:6379",
-      host: process.env.REDIS_HOST || 'localhost',
-      port: process.env.REDIS_PORT || 6379
+      // host: process.env.REDIS_HOST || 'localhost',
+      // port: process.env.REDIS_PORT || 6379
     }),
   ],
   providers: [AppService, AppResolver],

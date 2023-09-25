@@ -1,11 +1,8 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { CreateUserInput } from './dto/create-user.input';
 import { User } from './entities/user.entity';
-import { PubSub } from 'graphql-subscriptions';
-import { Subscription } from '@nestjs/graphql';
 import * as bcrypt from 'bcrypt';
 
-const pubSub = new PubSub();
 
 @Injectable()
 export class UsersService {

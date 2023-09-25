@@ -3,6 +3,7 @@ import { CreateUserInput } from './dto/create-user.input';
 import { User } from './entities/user.entity';
 import { PubSub } from 'graphql-subscriptions';
 import { Subscription } from '@nestjs/graphql';
+import * as bcrypt from 'bcrypt';
 
 const pubSub = new PubSub();
 
@@ -16,8 +17,11 @@ export class UsersService {
     const user = new User();
     user.name = userInput.name;
     user.email = userInput.email;
-    user.password = userInput.password;
+    const hash =await bcrypt.hash(userInput.password, 10);
+    user.password = hash;
+    console.log(user);
     return user.save();
+  
   }
 
 

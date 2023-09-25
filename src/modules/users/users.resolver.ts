@@ -14,7 +14,7 @@ export class UsersResolver {
   @UseInterceptors(CacheInterceptor)
   @CacheKey("all-users")
   @Query(() => [User], { name: 'users' })
-  // @UseGuards(JwtAuthGuard) //undo
+  @UseGuards(JwtAuthGuard)
   findAll() {
     //protect with JWT
     return this.usersService.findAll();

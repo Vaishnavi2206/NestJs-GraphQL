@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "1f88366a-6fb2-40ea-af80-c89308caa987",
+		"name": "Nest-Graphql APIS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17580292",
+		"_collection_link": "https://blue-sunset-835398.postman.co/workspace/My-Workspace~340979ed-2e5f-42d3-864b-1708739866b0/collection/17580292-1f88366a-6fb2-40ea-af80-c89308caa987?action=share&source=collection_link&creator=17580292"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4uZG9lQGdtYWlsLmNvbSIsImlkIjoyOCwiaWF0IjoxNjk1NjA4MzU0LCJleHAiOjE2OTU2MTQzNTR9.PvPlbOd7F6-OKpIlcoKT74vdeoimRNG0cGn1QQvrNww",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\r\n    users{\r\n        id\r\n        email\r\n        name\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation signup($input:CreateUserInput!){\r\n  signup(createUserInput:$input){\r\n\temail\r\n    name\r\n    password\r\n  }\r\n}",
+								"variables": "{\"input\":{\r\n  \"name\": \"jane\",\r\n  \"email\": \"jane@gmail.com\",\r\n  \"password\": \"jane123\"\r\n}}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": " mutation login($input:LoginUserInput!){\r\n    login(loginUserInput:$input){\r\n      user {\r\n      email\r\n    }\r\n    access_token\r\n    }\r\n  }",
+								"variables": "{\"input\":{\r\n\"username\":\"john.doe@gmail.com\",\r\n  \"password\":\"john123\"\r\n}}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
